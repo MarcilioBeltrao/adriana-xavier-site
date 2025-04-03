@@ -1,11 +1,10 @@
-// RELEASE FINAL – Parte 1: Layout base + SEO + Navegação multilíngue (EN/PT)
+// RELEASE FINAL – Parte 1, 2 e 3: Layout + SEO + Multilingual + Imagens Reais + Formulário Funcional
 
 import Head from 'next/head';
 import { useState } from 'react';
 
 export default function HomePage() {
   const [lang, setLang] = useState('en');
-
   const t = (en, pt) => (lang === 'en' ? en : pt);
 
   return (
@@ -46,7 +45,89 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Conteúdo segue nas próximas partes... */}
+      {/* Services Section with real images */}
+      <section id="services" className="py-16 px-6 bg-gray-50">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-10">{t('Our Services', 'Nossos Serviços')}</h2>
+          <div className="grid md:grid-cols-2 gap-8 text-left">
+            <ServiceCard
+              title={t('Notary Public', 'Notário Público')}
+              description={t('Document certification, affidavits, POA.', 'Certificação de documentos, declarações juramentadas, procurações.')}
+              imageUrl="https://images.unsplash.com/photo-1556742400-b5fdd6f17249?fit=crop&w=600&q=80"
+            />
+            <ServiceCard
+              title={t('Provincial Offences', 'Infrações Provinciais')}
+              description={t('Traffic tickets, by-law disputes.', 'Multas de trânsito, disputas de regulamentos.')}
+              imageUrl="https://images.unsplash.com/photo-1620058122840-24cf5f2d7609?fit=crop&w=600&q=80"
+            />
+            <ServiceCard
+              title={t('Small Claims Court', 'Tribunal de Pequenas Causas')}
+              description={t('Disputes up to $35,000.', 'Disputas até $35.000.')}
+              imageUrl="https://images.unsplash.com/photo-1633158829585-e8d3efcd0145?fit=crop&w=600&q=80"
+            />
+            <ServiceCard
+              title={t('Residential Tenancies (LTB)', 'Locações Residenciais (LTB)')}
+              description={t('Tenant-landlord disputes and advice.', 'Disputas e orientação entre inquilinos e locadores.')}
+              imageUrl="https://images.unsplash.com/photo-1570129477492-45c003edd2be?fit=crop&w=600&q=80"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section with Formspree backend */}
+      <section id="contact" className="py-16 px-6 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-6">{t('Contact Us', 'Fale Conosco')}</h2>
+          <form
+            action="https://formspree.io/f/mldjplqq" // Substitua "yourFormID" pelo ID real após cadastro
+            method="POST"
+            className="grid gap-4"
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder={t('Your Name', 'Seu Nome')}
+              required
+              className="border rounded p-3"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder={t('Your Email', 'Seu Email')}
+              required
+              className="border rounded p-3"
+            />
+            <textarea
+              name="message"
+              rows="4"
+              placeholder={t('Your Message', 'Sua Mensagem')}
+              required
+              className="border rounded p-3"
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded"
+            >
+              {t('Send Message', 'Enviar Mensagem')}
+            </button>
+          </form>
+          <p className="text-sm text-center text-gray-500 mt-4">
+            {t('We will respond within 24 hours.', 'Responderemos em até 24 horas.')}
+          </p>
+        </div>
+      </section>
     </main>
+  );
+}
+
+function ServiceCard({ title, description, imageUrl }) {
+  return (
+    <div className="bg-white rounded shadow-md overflow-hidden">
+      <img src={imageUrl} alt={title} className="w-full h-40 object-cover" />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <p className="text-gray-700 text-sm">{description}</p>
+      </div>
+    </div>
   );
 }
