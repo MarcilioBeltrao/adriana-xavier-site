@@ -1,11 +1,19 @@
-// Adriana Xavier Legal Services - Multilingual, Modern Legal Website (EN/PT)
-// Updated with bilíngue content and section anchors for translation toggle
+// Adriana Xavier Legal Services – Bilingual Legal Website with Enhanced Design and Sections
+
+import { useEffect } from 'react';
 
 export default function HomePage() {
+  useEffect(() => {
+    document.title = "Adriana Xavier Legal Services";
+  }, []);
+
   return (
     <main className="font-sans">
       {/* Hero Section */}
-      <section className="bg-cover bg-center h-screen text-white flex items-center justify-center" style={{ backgroundImage: "url('/images/legal-hero.jpg')" }}>
+      <section
+        className="bg-cover bg-center h-screen text-white flex items-center justify-center"
+        style={{ backgroundImage: "url('/images/legal-hero.jpg')" }}
+      >
         <div className="text-center bg-black/60 p-8 rounded-xl">
           <h1 className="text-4xl md:text-6xl font-bold">Adriana Xavier Legal Services</h1>
           <p className="text-lg mt-4">Paralegal Services · Serviços Jurídicos · Niagara Falls</p>
@@ -45,8 +53,51 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-16 px-10 bg-white" id="contact">
+      {/* FAQ */}
+      <section className="py-16 px-10 bg-white" id="faq">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-semibold mb-6 text-center">FAQ / Perguntas Frequentes</h2>
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-bold">Do I need a lawyer for Small Claims Court? / Preciso de advogado para Tribunal de Pequenas Causas?</h3>
+              <p>No, a licensed paralegal can represent you. / Não, um paralegal licenciado pode representá-lo.</p>
+            </div>
+            <div>
+              <h3 className="font-bold">Are consultations free? / As consultas são gratuitas?</h3>
+              <p>Initial consultations are free. / A primeira consulta é gratuita.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-gray-100 py-16 px-10" id="testimonials">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-semibold mb-6">What Clients Say / Depoimentos</h2>
+          <blockquote className="italic">“Adriana was efficient, compassionate, and effective. I highly recommend her!”</blockquote>
+          <p className="mt-2">— Client / Cliente</p>
+        </div>
+      </section>
+
+      {/* Blog Preview */}
+      <section className="py-16 px-10 bg-white" id="blog">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-semibold mb-6 text-center">Blog & News / Blog e Notícias</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="border rounded p-4">
+              <h3 className="text-xl font-bold">Understanding Provincial Offences / Entendendo as Infrações Provinciais</h3>
+              <p>Insights into traffic tickets and other common offences.</p>
+            </div>
+            <div className="border rounded p-4">
+              <h3 className="text-xl font-bold">Why Notarization Matters / Por que a Autenticação é Importante</h3>
+              <p>Legal value of certified documents.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="py-16 px-10 bg-gray-100" id="contact">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-semibold mb-6 text-center">Contact / Contato</h2>
           <form className="grid gap-4" action="mailto:contact@adrianaxavierlegal.ca" method="POST">
