@@ -1,14 +1,16 @@
-// index.jsx – Adriana Xavier Legal Services (final version)
+// index.jsx – Adriana Xavier Legal Services (adaptado)
 
 import Head from 'next/head';
 import { useState } from 'react';
+import Navbar from '../components/Navbar'; // Componente Navbar modular
+import ServiceCard from '../components/ServiceCard'; // Componente para cada serviço
 
 export default function HomePage() {
   const [lang, setLang] = useState('en');
   const t = (en, pt) => (lang === 'en' ? en : pt);
 
   return (
-    <main className="font-sans text-gray-900">
+    <main id="home" className="font-sans text-gray-900">
       <Head>
         <title>Adriana Xavier Legal Services</title>
         <meta name="description" content="Paralegal services in Niagara Falls for Small Claims, POA, Notary and LTB." />
@@ -17,33 +19,27 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-        <span className="text-xl font-bold">Adriana Xavier</span>
-        <div className="space-x-6 flex items-center">
-          <a href="#services" className="hover:text-blue-700">{t('Services', 'Serviços')}</a>
-          <a href="#about" className="hover:text-blue-700">{t('About', 'Sobre')}</a>
-          <a href="#faq" className="hover:text-blue-700">FAQ</a>
-          <a href="#contact" className="hover:text-blue-700">{t('Contact', 'Contato')}</a>
-          <button
-            className="ml-4 border px-2 py-1 rounded text-sm hover:bg-blue-100"
-            onClick={() => setLang(lang === 'en' ? 'pt' : 'en')}
-          >
-            {lang === 'en' ? 'PT' : 'EN'}
-          </button>
-        </div>
-      </nav>
+      {/* Nova Navbar */}
+      <Navbar t={t} lang={lang} setLang={setLang} />
 
       {/* Hero Section */}
       <header
+        id="hero"
         className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581091870622-2e43f4e12758?fit=crop&w=1950&q=80')" }}
       >
         <div className="bg-black/50 p-8 rounded-xl text-center max-w-2xl">
           <h1 className="text-4xl md:text-6xl font-bold">Adriana Xavier Legal Services</h1>
-          <p className="mt-4 text-lg">{t('Legal support with integrity, clarity and results.', 'Apoio jurídico com integridade, clareza e resultados.')}</p>
+          <p className="mt-4 text-lg">
+            {t('Legal support with integrity, clarity and results.', 'Apoio jurídico com integridade, clareza e resultados.')}
+          </p>
         </div>
       </header>
+
+      {/* Bloco de Teste Tailwind (opcional, para confirmação dos estilos) */}
+      <div className="bg-blue-200 p-4 text-center">
+        <p>Testando Tailwind!</p>
+      </div>
 
       {/* Services Section */}
       <section id="services" className="py-16 px-6 bg-gray-50">
@@ -54,21 +50,25 @@ export default function HomePage() {
               title={t('Notary Public', 'Notário Público')}
               description={t('Document certification, affidavits, POA.', 'Certificação de documentos, declarações juramentadas, procurações.')}
               imageUrl="https://images.unsplash.com/photo-1556742400-b5fdd6f17249?fit=crop&w=600&q=80"
+              link="/services/notary"
             />
             <ServiceCard
               title={t('Provincial Offences', 'Infrações Provinciais')}
               description={t('Traffic tickets, by-law disputes.', 'Multas de trânsito, disputas de regulamentos.')}
               imageUrl="https://images.unsplash.com/photo-1620058122840-24cf5f2d7609?fit=crop&w=600&q=80"
+              link="/services/provincial"
             />
             <ServiceCard
               title={t('Small Claims Court', 'Tribunal de Pequenas Causas')}
               description={t('Disputes up to $35,000.', 'Disputas até $35.000.')}
               imageUrl="https://images.unsplash.com/photo-1633158829585-e8d3efcd0145?fit=crop&w=600&q=80"
+              link="/services/small-claims"
             />
             <ServiceCard
               title={t('Residential Tenancies (LTB)', 'Locações Residenciais (LTB)')}
               description={t('Tenant-landlord disputes and advice.', 'Disputas e orientação entre inquilinos e locadores.')}
               imageUrl="https://images.unsplash.com/photo-1570129477492-45c003edd2be?fit=crop&w=600&q=80"
+              link="/services/tenancies"
             />
           </div>
         </div>
@@ -108,17 +108,5 @@ export default function HomePage() {
         </div>
       </footer>
     </main>
-  );
-}
-
-function ServiceCard({ title, description, imageUrl }) {
-  return (
-    <div className="bg-white rounded shadow-md overflow-hidden">
-      <img src={imageUrl} alt={title} className="w-full h-40 object-cover" />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-700 text-sm">{description}</p>
-      </div>
-    </div>
   );
 }
