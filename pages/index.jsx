@@ -1,9 +1,9 @@
-// index.jsx – Adriana Xavier Legal Services (adaptado)
+// index.jsx – Adriana Xavier Legal Services (adaptado com containers)
 
 import Head from 'next/head';
 import { useState } from 'react';
-import Navbar from '../components/Navbar'; // Componente Navbar modular
-import ServiceCard from '../components/ServiceCard'; // Componente para cada serviço
+import Navbar from '../components/Navbar';
+import ServiceCard from '../components/ServiceCard';
 
 export default function HomePage() {
   const [lang, setLang] = useState('en');
@@ -19,16 +19,16 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Nova Navbar */}
+      {/* Nova Navbar com container */}
       <Navbar t={t} lang={lang} setLang={setLang} />
 
-      {/* Hero Section */}
+      {/* Hero Section com container centralizado */}
       <header
         id="hero"
         className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581091870622-2e43f4e12758?fit=crop&w=1950&q=80')" }}
       >
-        <div className="bg-black/50 p-8 rounded-xl text-center max-w-2xl">
+        <div className="bg-black/50 p-8 rounded-xl text-center max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold">Adriana Xavier Legal Services</h1>
           <p className="mt-4 text-lg">
             {t('Legal support with integrity, clarity and results.', 'Apoio jurídico com integridade, clareza e resultados.')}
@@ -36,16 +36,16 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Bloco de Teste Tailwind (opcional, para confirmação dos estilos) */}
+      {/* Bloco de Teste Tailwind (opcional) */}
       <div className="bg-blue-200 p-4 text-center">
         <p>Testando Tailwind!</p>
       </div>
 
-      {/* Services Section */}
-      <section id="services" className="py-16 px-6 bg-gray-50">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-10">{t('Our Services', 'Nossos Serviços')}</h2>
-          <div className="grid md:grid-cols-2 gap-8 text-left">
+      {/* Services Section com container */}
+      <section id="services" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-10 text-center">{t('Our Services', 'Nossos Serviços')}</h2>
+          <div className="grid md:grid-cols-2 gap-8">
             <ServiceCard
               title={t('Notary Public', 'Notário Público')}
               description={t('Document certification, affidavits, POA.', 'Certificação de documentos, declarações juramentadas, procurações.')}
@@ -74,9 +74,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="contact" className="py-16 px-6 bg-white">
-        <div className="max-w-3xl mx-auto">
+      {/* Contact Form com container */}
+      <section id="contact" className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-6">{t('Contact Us', 'Fale Conosco')}</h2>
           <form
             action="https://formspree.io/f/mldjplqq"
@@ -96,15 +96,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 text-center text-sm text-gray-600 py-6 mt-10">
-        <div className="space-y-2">
-          <p>&copy; 2025 Adriana Xavier Legal Services</p>
-          <div className="space-x-4">
-            <a href="/terms" className="hover:underline">{t('Terms of Use', 'Termos de Uso')}</a>
-            <a href="/privacy" className="hover:underline">{t('Privacy Policy', 'Política de Privacidade')}</a>
+      {/* Footer com container */}
+      <footer className="bg-gray-100 text-center text-sm text-gray-600 py-6">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="space-y-2">
+            <p>&copy; 2025 Adriana Xavier Legal Services</p>
+            <div className="space-x-4">
+              <a href="/terms" className="hover:underline">{t('Terms of Use', 'Termos de Uso')}</a>
+              <a href="/privacy" className="hover:underline">{t('Privacy Policy', 'Política de Privacidade')}</a>
+            </div>
+            <p>{t('Website created for academic purposes.', 'Website criado para fins acadêmicos.')}</p>
           </div>
-          <p>{t('Website created for academic purposes.', 'Website criado para fins acadêmicos.')}</p>
         </div>
       </footer>
     </main>
